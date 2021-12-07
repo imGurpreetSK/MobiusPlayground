@@ -41,6 +41,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
 
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
     implementation 'com.spotify.mobius:mobius-core:1.5.6'
     implementation 'com.spotify.mobius:mobius-rx3:1.5.6'      // only for RxJava 3 support
     implementation 'com.spotify.mobius:mobius-android:1.5.6'  // only for Android support

@@ -10,8 +10,10 @@ import com.spotify.mobius.MobiusLoop
 import com.spotify.mobius.android.MobiusAndroid
 import com.spotify.mobius.android.runners.MainThreadWorkRunner
 import com.spotify.mobius.functions.Consumer
+import com.spotify.mobius.rx3.RxMobius
 import com.spotify.mobius.rx3.SchedulerWorkRunner
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.lang.ref.WeakReference
 
 class MainActivity : AppCompatActivity(), CounterView {
 
@@ -29,8 +31,8 @@ class MainActivity : AppCompatActivity(), CounterView {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val loopFactory = Mobius
-            .loop(CounterUpdate(), CounterEffectHandler(this))
+        val loopFactory = RxMobius
+            .loop(CounterUpdate(), ReactiveCounterEffectHandler.get(WeakReference(this)))
             .effectRunner { MainThreadWorkRunner.create() }
             .eventRunner { SchedulerWorkRunner(Schedulers.io()) }
 
